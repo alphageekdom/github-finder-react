@@ -35,6 +35,8 @@ const User = () => {
     hireable,
   } = user;
 
+  console.log(user);
+
   if (loading) {
     return <Spinner />;
   }
@@ -89,8 +91,8 @@ const User = () => {
                 <div className='stat'>
                   <div className='stat-title text-md'>Website</div>
                   <div className='text-lg stat-value'>
-                    <a href={login} target='_blank' rel='noreferrer'>
-                      {login}
+                    <a href={blog} target='_blank' rel='noreferrer'>
+                      {blog}
                     </a>
                   </div>
                 </div>
