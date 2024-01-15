@@ -52,7 +52,7 @@ const UserSearch = () => {
       {users.length > 0 && (
         <div>
           <button
-            onClick={() => dispatch({ types: 'CLEAR_USERS' })}
+            onClick={() => dispatch({ type: 'CLEAR_USERS' })}
             className='btn btn-ghost btn-lg'
           >
             Clear
