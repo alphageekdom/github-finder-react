@@ -5,18 +5,26 @@ import Spinner from '../components/layout/Spinner';
 import RepoList from '../components/repos/RepoList';
 import { useParams } from 'react-router-dom';
 import GithubContext from '../context/github/GithubContext';
+import { getUser, getUserRepos } from '../context/github/GithubActions';
 
 const User = () => {
-  const { getUser, user, loading, getUserRepos, repos } =
-    useContext(GithubContext);
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
 
   const params = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
+    dispatch({ type: 'SET_LOADING' });
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: 'GET_USER', payload: userData });
+
+      const userRepoData = await getUserRepos(params.login);
+      dispatch({ type: 'GET_REPOS', payload: userRepoData });
+    };
+
+    getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, params.login]);
 
   const {
     name,
@@ -72,7 +80,7 @@ const User = () => {
                 <a
                   href={html_url}
                   target='_blank'
-                  rel='noreferrer'
+                  rel='noreferrer noopener'
                   className='btn btn-outline'
                 >
                   Visit Github Profile
@@ -91,7 +99,7 @@ const User = () => {
                 <div className='stat'>
                   <div className='stat-title text-md'>Website</div>
                   <div className='text-lg stat-value'>
-                    <a href={blog} target='_blank' rel='noreferrer'>
+                    <a href={blog} target='_blank' rel='noreferrer noopener'>
                       {blog}
                     </a>
                   </div>
@@ -104,7 +112,7 @@ const User = () => {
                     <a
                       href={`https://twitter.com/${twitter_username}`}
                       target='_blank'
-                      rel='noreferrer'
+                      rel='noreferrer noopener'
                     >
                       {twitter_username}
                     </a>
