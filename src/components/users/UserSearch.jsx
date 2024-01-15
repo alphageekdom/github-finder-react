@@ -41,7 +41,7 @@ const UserSearch = () => {
               />
               <button
                 type='submit'
-                className='absolute top-0 right-0 rounded-l-none w-36 btn btn-lg'
+                className='absolute top-0 right-0 rounded-l-none w-36 btn btn-lg text-white'
               >
                 Go
               </button>
@@ -53,7 +53,7 @@ const UserSearch = () => {
         <div>
           <button
             onClick={() => dispatch({ type: 'CLEAR_USERS' })}
-            className='btn btn-ghost btn-lg'
+            className='btn btn-ghost btn-lg text-white'
           >
             Clear
           </button>
