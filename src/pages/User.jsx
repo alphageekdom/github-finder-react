@@ -31,7 +31,6 @@ const User = () => {
     bio,
     blog,
     twitter_username,
-    login,
     html_url,
     followers,
     following,
